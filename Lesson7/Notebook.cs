@@ -4,6 +4,9 @@ namespace Lesson7
 {
     public struct Notebook
     {
+        /// <summary>
+        /// Перечесления доступных типов полей структуры Record
+        /// </summary>
         public enum Field { title,author,status,created }        
 
         private Record[] records;
@@ -70,6 +73,10 @@ namespace Lesson7
             return temp;
         }        
 
+        /// <summary>
+        /// Удаление записи по номеру
+        /// </summary>
+        /// <param name="index"></param>
         public void Delete(int index)
         {            
             Record[] temp = new Record[Records.Length - 1];
@@ -85,6 +92,10 @@ namespace Lesson7
             Array.Resize<Record>(ref records, temp.Length);
             records = temp;
         }
+        /// <summary>
+        /// Удаление массива записей, напрямую данный метод не используется
+        /// </summary>
+        /// <param name="indexes"></param>
         public void Delete(int[] indexes)
         {
             Record[] temp = new Record[Records.Length - indexes.Length];
@@ -112,6 +123,11 @@ namespace Lesson7
             Array.Resize<Record>(ref records, temp.Length);
             records = temp;
         }
+        /// <summary>
+        /// Удаление по определенному значению поля
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
         public void Delete(Field field,string value)
         {
             if(field == Field.title)
@@ -127,6 +143,11 @@ namespace Lesson7
                 Delete(findByStatus(Convert.ToBoolean(value)));
             }
         }
+        /// <summary>
+        /// Метод предоставляющий возможность сортировки записей
+        /// </summary>
+        /// <param name="field">Тип enum Field</param>
+        /// <param name="order">порядок сортировки true-по возрастанию, false-по убыванию</param>
         public void Reorder(Field field,bool order)
         {
             if(Field.title == field)
@@ -163,7 +184,13 @@ namespace Lesson7
                 }
             }
         }
-
+        /// <summary>
+        /// Реализует возможность добавления записи
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="desc"></param>
+        /// <param name="author"></param>
+        /// <param name="status"></param>
         public void AddRecord(string title,string desc,string author,bool status = false)
         {
             if (index + 1 >= records.Length)
@@ -188,6 +215,14 @@ namespace Lesson7
             }
             records[index++] = rec;
         }
+        /// <summary>
+        /// Реализует возможность редактирования записи
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="title"></param>
+        /// <param name="desc"></param>
+        /// <param name="author"></param>
+        /// <param name="status"></param>
         public void Edit(int index, string title,string desc=null, string author=null,bool status=false)
         {            
             if (title != null)
@@ -200,6 +235,11 @@ namespace Lesson7
                 records[index].Status = true;            
 
         }
+        /// <summary>
+        /// Сохранение массива записей в файл
+        /// </summary>
+        /// <param name="path">Пусть</param>
+        /// <param name="status">с добавление в конец файла(true), с созданием нового файла при(false)</param>
         public void Save(string path,bool status=true)
         {
             FileStream fs;
@@ -222,6 +262,10 @@ namespace Lesson7
             }
             writer.Close();
         }
+        /// <summary>
+        /// Загрузка записей из файла
+        /// </summary>
+        /// <param name="path"></param>
         public void Load(string path)
         {
             string[] str,strDate;
@@ -252,7 +296,9 @@ namespace Lesson7
                 }
             }
         }
-        
+        /// <summary>
+        /// Печать ежедневника на экран
+        /// </summary>
         public void Print()
         {
             string str = string.Empty;

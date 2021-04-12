@@ -52,7 +52,12 @@ namespace Lesson7
         {
             get { return this.created; }            
         }
-
+        /// <summary>
+        /// Используеться для регулируемой сортировки в Array.Sort
+        /// </summary>
+        /// <param name="rec1"></param>
+        /// <param name="rec2"></param>
+        /// <returns></returns>
         public static int CompareByTitleAsc(Record rec1, Record rec2)
         {
             return String.Compare(rec1.title, rec2.title);

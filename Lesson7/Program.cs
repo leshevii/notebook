@@ -5,6 +5,10 @@ namespace Lesson7
 {
     class MainClass
     {
+        /// <summary>
+        /// Позволяет заполнить один экземпляр структуры Record
+        /// </summary>
+        /// <returns></returns>
         public static Record fillRecord()
         {
             string title, desc, author;
@@ -29,6 +33,10 @@ namespace Lesson7
             Record rec = new Record(title, desc, author, status);
             return rec;
         }
+        /// <summary>
+        /// Производит создание массива структур Record
+        /// </summary>
+        /// <returns></returns>
         public static Record[] fill()
         {
             Record[] records = new Record[0];
@@ -44,6 +52,11 @@ namespace Lesson7
             }
             return records;
         }
+        /// <summary>
+        /// Предоставляет интерфейс для удаления Record
+        /// </summary>
+        /// <param name="not">Экземпляр Notebook</param>
+        /// <param name="path">Путь к файлу для сохранения</param>
         public static void delete(ref Notebook not,string path)
         {
             Console.WriteLine("Удалить по номеру да/нет");
@@ -59,6 +72,10 @@ namespace Lesson7
 
             }
         }
+        /// <summary>
+        /// Интерфейс сортировки
+        /// </summary>
+        /// <param name="not">Экземпляр Notebook</param>
         public static void reorder(ref Notebook not)
         {
             Console.WriteLine("Упорядочить записи по:");
@@ -98,6 +115,10 @@ namespace Lesson7
                     break;
             }
         }
+        /// <summary>
+        /// Интерфейс редактирования
+        /// </summary>
+        /// <param name="not">Экземпляр Notebook</param>
         public static void edit(ref Notebook not)
         {
             int num;
